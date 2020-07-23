@@ -1,24 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
+import Layout from '@/components/layout'
+import generatedRouter from './routerAutoGenerate'
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        meta: {
+          affix: true,
+          name: '首页'
+        },
+        component: () => import('@/views/pagesManage/list')
+      },
+      ...generatedRouter
+    ]
+  }, {
+    path: '/404',
+    name: '404',
+    component: () => import('@/components/pages/e404')
+  }, {
+    path: '*', redirect: '/404', hidden: true
   },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
 ];
 
 const router = new VueRouter({
