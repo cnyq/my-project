@@ -28,7 +28,7 @@ modulesList.forEach((path) => {
       component: () => import('@/views/' + path),
       beforeEnter: (to, from, next) => {
         next()
-       }
+      }
     })
   }
 })

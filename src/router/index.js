@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from '@/components/layout'
-import generatedRouter from './routerAutoGenerate'
+import generatedRouter from './routerPackage'
 Vue.use(VueRouter);
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
           affix: true,
           name: '首页'
         },
-        component: () => import('@/views/pagesManage/list')
+        component: () => import('@/views/pagesManage/home')
       },
       ...generatedRouter
     ]
