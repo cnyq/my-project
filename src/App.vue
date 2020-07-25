@@ -3,26 +3,19 @@
     <router-view />
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+export default {
+  name: "App"
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+</script>
+<style lang="scss">
+#nprogress {
+  .bar {
+    // height: 3px!important;
+    border-radius: 5px;
+    background-color: skyblue!important;
+    background-image: linear-gradient(135deg,#8ac007 25%,yellow 25%,yellow 50%,#8ac007 50%,#8ac007 75%,yellow 75%,yellow 100%)!important;
+    background-size: 20px 20px!important;
   }
 }
 </style>
