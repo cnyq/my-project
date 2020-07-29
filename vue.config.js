@@ -4,6 +4,12 @@ const port = process.env.port || process.env.npm_config_port || 1205 // dev port
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+function getProdExternals() {
+  return {
+    vue: "Vue",
+    "element-ui": "ELEMENT"
+  };
+}
 module.exports = {
   // 基本路径
   publicPath: './',
@@ -56,7 +62,9 @@ module.exports = {
       assetFilter: function (assetFilename) {
         return assetFilename.endsWith('.js')
       }
-    }
+    },
+    // externals: process.env.NODE_ENV === 'production' ? getProdExternals() : {}
+    externals: getProdExternals()
   },
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
@@ -97,11 +105,11 @@ module.exports = {
                   priority: 10,
                   chunks: 'initial' // only package third parties that are initially dependent
                 },
-                elementUI: {
-                  name: 'chunk-elementUI', // split elementUI into a single package
-                  priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
-                  test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
-                },
+                // elementUI: {
+                //   name: 'chunk-elementUI', // split elementUI into a single package
+                //   priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+                //   test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // in order to adapt to cnpm
+                // },
                 commons: {
                   name: 'chunk-commons',
                   test: resolve('src/components'), // can customize your rules

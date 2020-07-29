@@ -1,5 +1,5 @@
 <template>
-  <div class="hint">开发中。。</div>
+  <div class="hint"> <el-button type="success" plain disabled>开发中</el-button></div>
 </template>
 <style lang="scss">
 .hint {
