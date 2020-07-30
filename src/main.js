@@ -2,16 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import '@/router/routerConfig'
-import 'normalize.css/normalize.css'
-import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/zh-CN'
-import 'element-ui/lib/theme-chalk/index.css'
+import '@/core'
 
 Vue.config.productionTip = false;
-// Vue.use(ElementUI, { locale })
+
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount("#app");
+

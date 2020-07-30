@@ -1,29 +1,63 @@
-
 const path = require('path')
-const port = process.env.port || process.env.npm_config_port || 1205 // dev port
+const defaultSitting = require('./src/setting')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const { title } = defaultSitting
+const {
+  NODE_ENV,
+  port,
+  npm_config_port
+} = process.env
+const startPort = port || npm_config_port || 1205
+const IS_DEV = NODE_ENV === 'development'
+const externals = {
+  vue: "Vue",
+  "element-ui": "ELEMENT",
+  'vue-router': 'VueRouter',
+  vuex: 'Vuex',
+  axios: 'axios'
+}
+const cdnMap = {
+  css: [],
+  js: [
+    'https://cdn.bootcss.com/vue/2.6.11/vue.min.js',
+    'https://cdn.bootcss.com/vue-router/3.0.3/vue-router.min.js',
+    'https://cdn.bootcss.com/vuex/3.1.0/vuex.min.js',
+    'https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js',
+    'https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/index.js'
+  ]
+}
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-function getProdExternals() {
-  return {
-    vue: "Vue",
-    "element-ui": "ELEMENT"
-  };
+// 别名配置
+const alias = {
+  '@': resolve('src') // 主目录
+}
+const commonWebPackConfig = {
+  name: title,
+  performance: {
+    hints: 'warning',
+    //入口起点的最大体积
+    maxEntrypointSize: 50000000,
+    //生成文件的最大体积
+    maxAssetSize: 30000000,
+    //只给出 js 文件的性能提示
+    assetFilter: function (assetFilename) {
+      return assetFilename.endsWith('.js')
+    }
+  },
+  resolve: {
+    alias
+  }
 }
 module.exports = {
-  // 基本路径
   publicPath: './',
-  // 输出文件目录
   outputDir: 'dist',
-  // 放置生成的静态资源的输出文件目录
   assetsDir: 'static',
-  // eslint 关闭
   lintOnSave: false,
-  // 生产环境的 source map
   productionSourceMap: false,
-  // 开发服务设置
   devServer: {
-    port: port,
+    port: startPort,
     open: true, // 是否自动打开浏览器
     // 出现编译器错误或警告时，在浏览器中是否全屏覆盖
     overlay: {
@@ -41,35 +75,14 @@ module.exports = {
     //     },
     // }
   },
-  // webpack配置
-  configureWebpack: {
-    // 页面名称
-    name: 'blog',
-    // 设置别名
-    resolve: {
-      alias: {
-        '@': resolve('src')
-      }
-    },
-    //警告 webpack 的性能提示
-    performance: {
-      hints: 'warning',
-      //入口起点的最大体积
-      maxEntrypointSize: 50000000,
-      //生成文件的最大体积
-      maxAssetSize: 30000000,
-      //只给出 js 文件的性能提示
-      assetFilter: function (assetFilename) {
-        return assetFilename.endsWith('.js')
-      }
-    },
-    // externals: process.env.NODE_ENV === 'production' ? getProdExternals() : {}
-    externals: getProdExternals()
+  configureWebpack: () => {
+    return {
+      ...commonWebPackConfig
+    }
   },
   chainWebpack(config) {
-    config.plugins.delete('preload') // TODO: need test
-    config.plugins.delete('prefetch') // TODO: need test
-    // set preserveWhitespace
+    config.plugins.delete('preload')
+    config.plugins.delete('prefetch')
     config.module
       .rule('vue')
       .use('vue-loader')
@@ -79,22 +92,32 @@ module.exports = {
         return options
       })
       .end()
+    config.plugin('html').tap(args => {
+      args[0].title = title // 应用的名字
+      return args
+    })
     config
-      .when(process.env.NODE_ENV === 'development',
+      .when(IS_DEV,
         config => config.devtool('cheap-source-map')
       )
     // html-webpack-plugin 增强包
     config
-      .when(process.env.NODE_ENV !== 'development',
+      .when(!IS_DEV,
         config => {
           config
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
-            .use('script-ext-html-webpack-plugin', [{
+            .use(ScriptExtHtmlWebpackPlugin, [{
               // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
+          config.plugin('html').tap(args => {
+            args[0].cdn = cdnMap
+            args[0].minify.minifyCSS = true // 压缩html中的css
+            return args
+          })
+          config.externals(externals)
           config
             .optimization.splitChunks({
               chunks: 'all',
@@ -122,5 +145,12 @@ module.exports = {
           config.optimization.runtimeChunk('single')
         }
       )
+  },
+  css: {
+    // 是否使用css分离插件 ExtractTextPlugin
+    extract: !IS_DEV,
+    modules: false,
+    // 开启 CSS source maps?
+    sourceMap: IS_DEV
   }
 }
