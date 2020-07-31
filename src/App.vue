@@ -14,7 +14,7 @@ export default {
     // height: 3px!important;
     border-radius: 5px;
     background-color: skyblue!important;
-    background-image: linear-gradient(135deg,#8ac007 25%,yellow 25%,yellow 50%,#8ac007 50%,#8ac007 75%,yellow 75%,yellow 100%)!important;
+    background-image: linear-gradient(135deg,#b3c0d1 25%,#e9eef3 25%,#e9eef3 50%,#b3c0d1 50%,#b3c0d1 75%,#e9eef3 75%,#e9eef3 100%)!important;
     background-size: 20px 20px!important;
   }
 }

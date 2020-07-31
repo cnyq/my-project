@@ -1,0 +1,28 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: #2e2e2e;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #8d7979;
+    border-radius: 20px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

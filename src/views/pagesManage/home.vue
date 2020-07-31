@@ -6,6 +6,7 @@
 <script>
 import { setTitle } from "@/utils/title-set"
 export default {
+  name: 'home',
   methods: {
     clic1k() {
       setTitle()

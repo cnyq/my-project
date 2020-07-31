@@ -12,7 +12,7 @@ const routes = [
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: '',
         meta: {
           affix: true,
           name: '首页'
