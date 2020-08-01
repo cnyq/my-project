@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import '@/router/routerConfig'
 import 'normalize.css/normalize.css'
+import '@/assets/styles/index.scss'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
 // import 'element-ui/lib/theme-chalk/index.css'

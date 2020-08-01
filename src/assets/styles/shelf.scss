@@ -1,0 +1,69 @@
+#app {
+  .containerAll {
+    height: 100vh;
+  }
+
+  .el-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .el-aside {
+    background-color: #fff;
+    height: 100%;
+    -moz-box-shadow: 2px 0px 6px #ccc;
+    -webkit-box-shadow: 2px 0px 6px #ccc;
+    box-shadow: 2px 0px 6px #ccc;
+    position: fixed;
+    left: 0;
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100px;
+      }
+    }
+
+    .aside-menu {
+      border-right: none;
+
+      &.el-menu {
+        & li {
+          background: #4a4a4a !important;
+        }
+
+        & div {
+          background: #4b3f3f !important;
+        }
+      }
+
+      @at-root .el-menu-item.is-active {
+        background: #108ee9 !important;
+      }
+
+      &.el-menu--collapse {
+        .el-submenu.is-active {
+          .el-submenu__title {
+            background: #108ee9 !important;
+          }
+          i{
+            color: inherit !important;
+          }
+        }
+      }
+    }
+  }
+
+  .containerRi {
+    margin-left: 230px;
+  }
+
+  .el-main {
+    height: 100%;
+  }
+}

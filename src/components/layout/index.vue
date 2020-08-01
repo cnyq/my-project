@@ -10,9 +10,6 @@
         </el-header>
         <el-main>
           <Main></Main>
-          <keep-alive :include="visitedViews">
-            <router-view :key="key" />
-          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
@@ -36,27 +33,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.containerAll {
-  height: 100vh;
-}
-.el-header {
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-}
-.el-aside {
-  background-color: #fff;
-  height: 100%;
-  -moz-box-shadow: 2px 0px 6px #ccc;
-  -webkit-box-shadow: 2px 0px 6px #ccc;
-  box-shadow: 2px 0px 6px #ccc;
-  position: fixed;
-  left: 0;
-}
-.containerRi {
-  margin-left: 230px;
-}
-.el-main {
-  height: 100%;
-}
-</style>

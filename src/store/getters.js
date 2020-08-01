@@ -1,4 +1,6 @@
 const getters = {
+  //app
+  isCollapse: state => state.app.isCollapse,
   //APP可配
   pageInfo: state => state.appConfigParams.pageInfo,
   appStatesData: state => state.appConfigParams.appStatesData,

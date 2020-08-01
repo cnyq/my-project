@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-07-22 22:01:04
- * @LastEditTime: 2020-07-22 22:03:40
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \my-project\src\store\index.js
- */ 
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'

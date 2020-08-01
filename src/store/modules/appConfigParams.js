@@ -1,16 +1,5 @@
-/*
- * @Author: your name
- * @Date: 2020-07-22 22:01:04
- * @LastEditTime: 2020-07-22 22:03:24
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \my-project\src\store\modules\appConfigParams.js
- */ 
 const states = {
-	pageInfo: {}, //页面属性
-	appStatesData: [], //白板存储的数据
-	isShowModuleConfig: false, //右侧是否显示控件配置
-	isUpdateBoardList: false //更新白板列表
+	currentPage: {}, //当前页面信息
 }
 
 const mutations = {

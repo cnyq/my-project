@@ -1,5 +1,5 @@
 <template>
   <div>
-    about
+    page2
   </div>
 </template>

@@ -15,7 +15,7 @@ const routes = [
         name: '',
         meta: {
           affix: true,
-          name: '首页'
+          title: '首页'
         },
         component: () => import('@/views/pagesManage/home')
       },
@@ -34,5 +34,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 export default router;
