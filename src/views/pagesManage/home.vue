@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { setTitle } from "@/utils/title-set"
+import { setTitle } from "@/utils/router-fun"
 export default {
   name: 'home',
   methods: {

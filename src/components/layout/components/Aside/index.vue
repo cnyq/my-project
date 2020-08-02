@@ -1,10 +1,12 @@
 <template>
-  <div class="aside" :style="{background: styleSetting.darkColor}">
+  <div class="app-aside" :style="{background: styleSetting.darkColor}">
     <div class="logoSite">
       <Logo></Logo>
     </div>
     <div class="menuSite">
-      <Menu></Menu>
+      <transition name="fade-transformSm" mode="out-in">
+        <Menu></Menu>
+      </transition>
     </div>
   </div>
 </template>
@@ -25,23 +27,4 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@/assets/styles/mixin.scss';
-.aside {
-  height: 100%;
-  overflow-x: hidden;
-  position: relative;
-  padding-top: 60px;
-  box-sizing: border-box;
-  .logoSite {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 60px;
-  }
-  .menuSite {
-    height: 100%;
-    overflow-y: auto;
-    @include scrollBar;
-  }
-}
 </style>

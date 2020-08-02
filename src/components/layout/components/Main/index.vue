@@ -1,9 +1,11 @@
 <template>
-  <transition name="fade-transform" mode="out-in">
-    <keep-alive :include="visitedViews">
-      <router-view :key="key" />
-    </keep-alive>
-  </transition>
+  <div class="app-main">
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="visitedViews">
+        <router-view :key="key" />
+      </keep-alive>
+    </transition>
+  </div>
 </template>
 <script>
 export default {
@@ -14,7 +16,7 @@ export default {
     },
     visitedViews() {
       let visitedViews = []
-      return  []
+      return []
     }
   }
 }
