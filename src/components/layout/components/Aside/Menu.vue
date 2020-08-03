@@ -13,7 +13,7 @@
       <template v-if="items.children.length>0">
         <el-submenu :index="items.router" :key="index">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i :class="iconState(items.router)"></i>
             <span slot="title">{{items.title}}</span>
           </template>
           <el-menu-item
@@ -25,7 +25,7 @@
       </template>
       <template v-if="items.children.length === 0">
         <el-menu-item :index="items.router" :key="index">
-          <i class="el-icon-setting"></i>
+          <i :class="iconState(items.router)"></i>
           <span slot="title">{{items.title}}</span>
         </el-menu-item>
       </template>
@@ -44,6 +44,10 @@ export default {
   computed: {
     ...mapGetters(["isCollapse"])
   },
-  methods: {}
+  methods: {
+    iconState(path){
+      return path == '/home' ?'el-icon-s-home':'el-icon-menu'
+    },
+  }
 }
 </script>

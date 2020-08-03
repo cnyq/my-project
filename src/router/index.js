@@ -17,7 +17,7 @@ const routes = [
           affix: true,
           title: '首页'
         },
-        component: () => import('@/views/pagesManage/home')
+        component: () => import('@/components/pages/index')
       },
       ...generatedRouter
     ]

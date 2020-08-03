@@ -12,7 +12,7 @@ modulesFiles.keys().forEach((modulePath) => {
 modulesList.forEach((path) => {
   const pathList = path.split('/')
   // 若 .vue 文件存在于 components 目录下，说明为某页面拆分组件  不去注入路由。
-  if (pathList[pathList.length - 2] === 'components') {
+  if (pathList[0] === 'components') {
     return false
   }
   let name = pathList[pathList.length - 1]

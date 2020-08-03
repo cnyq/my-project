@@ -21,9 +21,6 @@ export default {
   computed: {
     ...mapGetters(["breadcrumbList"])
   },
-  mounted() {
-    console.log(this.breadcrumbList)
-  },
   methods: {
     routerState(path) {
       return path ? { path: path } : ""

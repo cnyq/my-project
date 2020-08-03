@@ -7,13 +7,13 @@ const routerConstant = [{
 }, {
   grade: 2,
   group: 'page',
-  groupTitle: '页面',
-  title: '页面1',
-  router: '/page'
+  groupTitle: 'd3.js',
+  title: 'd3 柱状图',
+  router: '/d3-bar-chart'
 }, {
   grade: 2,
   group: 'page',
-  groupTitle: '页面',
+  groupTitle: 'd3.js',
   title: '页面2',
   router: '/page2'
 }]
