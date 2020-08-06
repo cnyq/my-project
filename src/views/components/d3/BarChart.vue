@@ -4,7 +4,7 @@
 
 <script>
 import * as d3 from 'd3'
-import Tools from '../lib/tool'
+import Tools from '../lib/tools'
 export default {
   name: 'bar-graph',
   props: {
@@ -102,7 +102,7 @@ export default {
       // 渲染图表
       this.render(this.data)
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   },
   methods: {
@@ -161,6 +161,26 @@ export default {
         .attr('width', width)
         .attr('height', height)
       return svg
+    },
+    // 添加坐标轴
+    addScale (svg, data, bar) {
+      const {contentWidth, height, axis, padding} = bar
+      const xScale = d3.scaleBand().range([0, contentWidth]).domain(axis.xAxisData)
+      const xAxis = d3.axisBottom(xScale)
+      const yScale = d3.scaleLinear().range([height - padding.top - padding.bottom, 0]).domain([0, d3.max(data)])
+      const yAxis = d3.axisLeft(yScale)
+      svg.append('g')
+        .classed('axis-x', true)
+        .attr('transform', `translate(${padding.left}, ${height - padding.bottom})`)
+        .call(xAxis)
+      svg.append('g')
+        .classed('axis-y', true)
+        .attr('transform', `translate(${padding.left}, ${padding.bottom})`)
+        .call(yAxis)
+      return {
+        xScale,
+        yScale
+      }
     },
     // 添加标题
     addTitle (svg, barTitle, padding, contentWidth) {
@@ -221,26 +241,7 @@ export default {
         .attr('dy', '1em')
         .text(d => d)
     },
-    // 添加坐标轴
-    addScale (svg, data, bar) {
-      const {contentWidth, height, axis, padding} = bar
-      const xScale = d3.scaleBand().range([0, contentWidth]).domain(axis.xAxisData)
-      const xAxis = d3.axisBottom(xScale)
-      const yScale = d3.scaleLinear().range([height - padding.top - padding.bottom, 0]).domain([0, d3.max(data)])
-      const yAxis = d3.axisLeft(yScale)
-      svg.append('g')
-        .classed('axis-x', true)
-        .attr('transform', `translate(${padding.left}, ${height - padding.bottom})`)
-        .call(xAxis)
-      svg.append('g')
-        .classed('axis-y', true)
-        .attr('transform', `translate(${padding.left}, ${padding.bottom})`)
-        .call(yAxis)
-      return {
-        xScale,
-        yScale
-      }
-    },
+    
     // 添加提示框
     addTip (svg, xAxisData) {
       const { tip, color } = this.$props

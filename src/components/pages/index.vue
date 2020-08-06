@@ -31,7 +31,7 @@ export default {
       const greeting = this.$refs.descStr
       const typed = new Typed(greeting, {
         strings: this.typedOptions,
-        typeSpeed: 100,
+        typeSpeed: 150,
         loop: true,
         backDelay: 2000,
         backSpeed: 60
@@ -46,7 +46,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 60px;
   .typed-cursor {
     opacity: 1;
     -webkit-animation: blink 0.7s infinite;

@@ -14,8 +14,8 @@ const routerConstant = [{
   grade: 2,
   group: 'page',
   groupTitle: 'd3.js',
-  title: '页面2',
-  router: '/page2'
+  title: 'd3测试',
+  router: '/d3text'
 }]
 
 let menuList = []
