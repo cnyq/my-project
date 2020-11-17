@@ -9,8 +9,8 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
   <link rel="stylesheet" href='https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.0/theme-chalk/index.css'>
-  <% if (process.env.NODE_ENV === 'production') { %> <% for(var css of
-  htmlWebpackPlugin.options.cdn.css) { %>
+  <% if (process.env.NODE_ENV === 'production') { %>
+  <% for(var css of htmlWebpackPlugin.options.cdn.css) { %>
   <link href="<%=css%>" rel="preload" as="style" />
   <link rel="stylesheet" href="<%=css%>" as="style" />
   <% } %> <% for(var js of htmlWebpackPlugin.options.cdn.js) { %>

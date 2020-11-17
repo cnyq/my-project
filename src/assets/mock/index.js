@@ -16,6 +16,12 @@ const routerConstant = [{
   groupTitle: 'd3.js',
   title: 'd3测试',
   router: '/d3text'
+}, {
+  grade: 2,
+  group: 'page',
+  groupTitle: 'd3.js',
+  title: 'data-join',
+  router: '/data-join'
 }]
 
 let menuList = []
