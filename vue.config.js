@@ -51,7 +51,7 @@ const commonWebPackConfig = {
   }
 }
 module.exports = {
-  publicPath: './',
+  publicPath: IS_DEV ? './' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: false,
